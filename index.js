@@ -1,8 +1,9 @@
 const express = require('express');
 const { Pool } = require('pg');
-
+const cors = require('cors'); // Requiere el paquete cors
 const app = express();
 const port = 3000;
+app.use(cors()); // Habilita CORS para todas las rutas
 
 // Configuración de la conexión a la base de datos
 const pool = new Pool({
