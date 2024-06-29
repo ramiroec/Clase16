@@ -47,7 +47,7 @@ app.get('/productos', async (req, res) => {
 });
 
 // API para insertar un nuevo registro
-router.post('/clientes', async (req, res) => {
+app.post('/clientes', async (req, res) => {
   try {
     const { nombre, direccion, telefono } = req.body;
     const result = await db.pool.query(
