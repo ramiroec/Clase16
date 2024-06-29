@@ -46,6 +46,21 @@ app.get('/productos', async (req, res) => {
   }
 });
 
+// API para insertar un nuevo registro
+router.post('/clientes', async (req, res) => {
+  try {
+    const { nombre, direccion, telefono } = req.body;
+    const result = await db.pool.query(
+      'INSERT INTO clientes (nombre, apellido, telefono) VALUES ($1, $2, $3) RETURNING *',
+      [nombre, direccion, telefono]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al insertar el cliente' });
+  }
+});
+
 // Inicia el servidor
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
